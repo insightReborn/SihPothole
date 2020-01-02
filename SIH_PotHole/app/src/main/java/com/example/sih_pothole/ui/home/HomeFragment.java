@@ -3,6 +3,7 @@ package com.example.sih_pothole.ui.home;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.example.sih_pothole.R;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.net.HttpURLConnection;
 
 public class HomeFragment extends Fragment {
@@ -44,13 +46,13 @@ public class HomeFragment extends Fragment {
         });
 
 
-        volley(SEND_IMAGE);
+      //  volley(SEND_IMAGE);
 
 
         return root;
     }
 
-    private void volley(final String task)
+ /*   private void volley(final String task)
     {
 
         switch (task) {
@@ -95,7 +97,7 @@ public class HomeFragment extends Fragment {
                                             }
                                             setTheAdapter();
 
-*/
+
 
                                     }
                                 }
@@ -142,4 +144,6 @@ public class HomeFragment extends Fragment {
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
+    */
+  
 }
