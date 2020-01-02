@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="lbl_set_profile_photo">Choose options</string>
+    <string name="lbl_take_camera_picture">Camera</string>
+    <string name="lbl_choose_from_gallery">Gallery</string>
 </resources>
