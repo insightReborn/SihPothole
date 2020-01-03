@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.sih_pothole.R;
+import com.google.android.material.textfield.TextInputLayout;
+
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,6 +44,9 @@ public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
     private TextView ProfileText;
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&-]+(?:\\.[a-zA-Z0-9_+&-]+)*" + "@" + "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+    private TextInputLayout Name,Email,PhoneNumber;
     private CircleImageView ProfileImageView, ProfileImagePlus;
     View mView;
 
@@ -45,6 +55,14 @@ public class NotificationsFragment extends Fragment {
         notificationsViewModel = ViewModelProviders.of(this).get(NotificationsViewModel.class);
         mView = inflater.inflate(R.layout.fragment_notifications, container, false);
         ProfileImageView = (CircleImageView) mView.findViewById(R.id.img_profile);
+        ProfileImagePlus = (CircleImageView) mView.findViewById(R.id.img_plus);
+        Name = mView.findViewById(R.id.name);
+        Email = mView.findViewById(R.id.email_id);
+        PhoneNumber = mView.findViewById(R.id.phone_number);
+
+        Name.getEditText().addTextChangedListener(new CustomTextWatcher(Name));
+        Email.getEditText().addTextChangedListener((TextWatcher) new CustomTextWatcher(Email));
+        PhoneNumber.getEditText().addTextChangedListener(new CustomTextWatcher(PhoneNumber));
 
      /*   notificationsViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -90,6 +108,8 @@ public class NotificationsFragment extends Fragment {
             }
         });
         return mView;
+
+
     }
 
     @Override
@@ -108,5 +128,39 @@ public class NotificationsFragment extends Fragment {
             }
         }
     }
+
+    private class CustomTextWatcher implements TextWatcher {
+        private View view;
+
+        private CustomTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        public void afterTextChanged(Editable s) {
+            String text = s.toString();
+            switch (view.getId()){
+                case R.id.name:
+
+            }
+        }
+
+    }
+
+    public static boolean emailValidator(String email) {
+
+        if (email == null) {
+            return false;
+        }
+
+        Matcher matcher = EMAIL_PATTERN.matcher(email);
+        return matcher.matches();
+    }
+
 
 }

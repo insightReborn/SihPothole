@@ -1,5 +1,6 @@
 package com.example.sih_pothole.ui.home;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -20,9 +21,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.sih_pothole.MainActivity;
 import com.example.sih_pothole.MyVolleyRequest;
 import com.example.sih_pothole.R;
+import com.example.sih_pothole.login.OTPActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -46,13 +51,14 @@ public class HomeFragment extends Fragment {
         });
 
 
-      //  volley(SEND_IMAGE);
+
+      volley(SEND_IMAGE);
 
 
         return root;
     }
 
- /*   private void volley(final String task)
+    private void volley(final String task)
     {
 
         switch (task) {
@@ -65,21 +71,24 @@ public class HomeFragment extends Fragment {
                     System.out.println("booo");
 
                     JSONObject object=new JSONObject();
-                    Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_resource)
+                    Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.image008);
 
                     object.put("image",imagetoString(icon));
                     object.put("vaild","");
 
                     JsonObjectRequest jSONObjectRequest = new JsonObjectRequest(
-                            Request.Method.GET,"http://06e50644.ngrok.io/", object,
+                            Request.Method.POST,"http://ba420446.ngrok.io/", object,
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     System.out.println("ggg");
 
                                     if (response != null) {
-                                        System.out.println(response);
-
+                                        try {
+                                            System.out.println(response.get("result"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
 
                                         //   JSONArray array=response;
                                         //   ListDiscover.clear();
@@ -98,7 +107,7 @@ public class HomeFragment extends Fragment {
                                             setTheAdapter();
 
 
-
+*/
                                     }
                                 }
                             },
@@ -144,6 +153,4 @@ public class HomeFragment extends Fragment {
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
     }
-    */
-
 }

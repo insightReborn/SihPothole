@@ -6,4 +6,13 @@
     <string name="lbl_set_profile_photo">Choose options</string>
     <string name="lbl_take_camera_picture">Camera</string>
     <string name="lbl_choose_from_gallery">Gallery</string>
+
+    <string name="goToSettings">Settings</string>
+    <string name="locationPermissionDenied">Location permission was denied, but is required for core functionality.</string>
+    <string name="locationPermissionRationale">Location permission is required for core functionality</string>
+
+
+    <string name="phonePermissionRationale">Phone permission is required for this feature</string>
+    <string name="phonePermissionDenied">Phone permission was denied, but is required for this functionality</string>
+
 </resources>
